@@ -1,40 +1,1886 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Dmitry Duka">
+  <meta name="dcterms.date" content="2024-10-25">
+  <title>Linux on GPU</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href=".//dist/reset.css">
+  <link rel="stylesheet" href=".//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href=".//dist/theme/night.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
 
-		<title>reveal.js</title>
+<section id="title-slide">
+  <h1 class="title">Linux on GPU</h1>
+  <p class="author">Dmitry Duka</p>
+  <p class="date">October 25, 2024</p>
+</section>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+<section class="slide level2">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+<section data-auto-animate>
+<h2 style="color: #d1d0a3;">
+Linux on GPU
+</h2>
+</section>
+</section>
+<section class="slide level2">
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+<section data-auto-animate>
+<h2 style="color: #d1d0a3;">
+Linux on GPU
+</h2>
+<h4>
+Ehh.. what?
+</h4>
+</section>
+</section>
+<section class="slide level2">
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Who am I
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Who am I
+</h3>
+<ul>
+<li>
+Joined NVIDIA in 2010
+</li>
+<li>
+PhysX/APEX
+</li>
+<li>
+NVIDIA Ansel
+</li>
+<li>
+NVIDIA Omniverse
+</li>
+</ul>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Past experiments
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="margin-top: -35%;color: #d1d0a3;">
+Past experiments
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="margin-top: -35%;color: #d1d0a3;">
+Past experiments
+</h3>
+<h4>
+Gameboy on GPU
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Past experiments
+</h3>
+<h4>
+Gameboy on GPU
+</h4>
+&lt;img src=“images/GreyGameboy.png” width=“60%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Past experiments
+</h3>
+<h4>
+Gameboy on GPU
+</h4>
+<img src="images/gameboy-arch.webp" width="70%" style="background-color:white;" />
+</section>
+</section>
+<section class="slide level2">
+
+<p><img src="images/160gameboys.png" width="100%" /></p>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+So what this is about?
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+So what this is about?
+</h3>
+<h4>
+Is it possible to run something more complex than Gameboy on a GPU?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+So what this is about?
+</h3>
+<h4 style="color: #aaaaaa;">
+Is it possible to run something more complex than Gameboy on a GPU?
+</h4>
+<h5>
+Something like.. Linux?
+</h5>
+</section>
+</section>
+<section class="slide level2">
+
+<p><img src="images/bread.jpg" width="100%" /></p>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU
+</h4>
+<h4>
+RAM
+</h4>
+<h4>
+I/O
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU <a href="https://github.com/sysprog21/semu">(semu)</a>
+</h4>
+<h4 style="color: #555555;">
+RAM
+</h4>
+<h4 style="color: #555555;">
+I/O
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU <a href="https://github.com/sysprog21/semu">(semu)</a>
+</h4>
+<h4 style="font-size: 0.5em;">
+RISC-V RV32IMA
+</h4>
+<h4 style="color: #555555;">
+RAM
+</h4>
+<h4 style="color: #555555;">
+I/O
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on CPU
+</h4>
+&lt;img src=“images/cpu-emulation-loop.svg” width=“60%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+&lt;img src=“images/gpu-emulation-loop.svg” width=“60%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+&lt;img src=“images/gpu-emulation-loop.svg” width=“40%”,
+background-color=“white” /&gt;
+<h4>
+Why do we emulate only a batch of instructions?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+<h4 style="color: #aaaaaa;">
+Why do we emulate only a batch of instructions?
+</h4>
+<h4>
+WDDM vs TCC driver mode
+</h4>
+<h4 style="font-size: 0.5em">
+WDDM: 2 second CUDA program runtime limit
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+&lt;img src=“images/cuda-warps.svg” width=“100%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+<h4 style="font-size: 0.5em;">
+Emulating 320 instances
+</h4>
+&lt;img src=“images/hw-sched-good.svg” width=“100%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+<h4 style="font-size: 0.5em;">
+Emulating 320 instances
+</h4>
+&lt;img src=“images/hw-sched-bad.svg” width=“100%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+<h4 style="font-size: 0.5em;">
+Emulating 320 instances
+</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center;font-size: 0.5em;">
+320 warps, 1 thread each
+</th>
+<th style="text-align:center;font-size: 0.5em;">
+10 warps, 32 threads each
+</th>
+</tr>
+<pre><code>&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+      &lt;td&gt;&lt;img src=&quot;images/hw-sched-good.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img src=&quot;images/hw-sched-bad.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+      &lt;td style=&quot;text-align:center;font-size: 2em;color: #000000;&quot;&gt;?&lt;/td&gt;
+      &lt;td style=&quot;text-align:center;font-size: 2em;color: #000000;&quot;&quot;&gt;?&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;</code></pre>
+</table>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+CPU on GPU
+</h4>
+<h4 style="font-size: 0.5em;">
+Emulating 320 instances
+</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center;font-size: 0.5em;">
+320 warps, 1 thread each
+</th>
+<th style="text-align:center;font-size: 0.5em;">
+10 warps, 32 threads each
+</th>
+</tr>
+<pre><code>&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+      &lt;td&gt;&lt;img src=&quot;images/hw-sched-good.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img src=&quot;images/hw-sched-bad.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+      &lt;td style=&quot;text-align:center;font-size: 2em;&quot;&gt;✓&lt;/td&gt;
+      &lt;td style=&quot;text-align:center;font-size: 2em;&quot;&gt;✘&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;</code></pre>
+</table>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4 style="color: #555555;">
+CPU <a href="https://github.com/sysprog21/semu">(semu)</a>
+</h4>
+<h4>
+RAM
+</h4>
+<h4 style="color: #555555;">
+I/O
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+RAM
+</h4>
+<img src="images/memory-layout.jpg" width="100%" />
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+RAM
+</h4>
+<img src="images/memory-layout.jpg" width="100%" />
+<h4>
+What’s dtb?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+What’s dtb?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4 style="color: #aaaaaa;">
+What’s dtb?
+</h4>
+<h4>
+Device Tree Source, which is a definition of the machine. Describes CPU,
+RAM, initrd, I/O, interrupt controllers, etc
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<pre class="dts"><code>      /dts-v1/;
+
+      / {
+          model = &quot;semu&quot;;
+
+          aliases {
+            serial0 = &quot;/soc/serial@4000000&quot;;
+          };
+
+          chosen {
+            bootargs = &quot;earlycon console=ttyS0&quot;;
+            stdout-path = &quot;serial0&quot;;
+            linux,initrd-start = &lt;0x1f700000&gt;; /* @403 MiB (503 * 1024 * 1024)     \*/
+            linux,initrd-end = &lt;0x1fefffff&gt;;   /* @511 MiB (511 * 1024 * 1024 - 1) */
+          };
+
+          cpus {
+            timebase-frequency = &lt;65000000&gt;;
+            cpu0: cpu@0 {
+                            device_type = &quot;cpu&quot;;
+                            compatible = &quot;riscv&quot;;
+                            reg = &lt;0&gt;;
+                            riscv,isa = &quot;rv32ima&quot;;
+                            mmu-type = &quot;riscv,rv32&quot;;
+                            cpu0_intc: interrupt-controller {
+                              interrupt-controller;
+                              compatible = &quot;riscv,cpu-intc&quot;;
+                            };
+            };
+          };
+
+          sram: memory@0 {
+                          device_type = &quot;memory&quot;;
+                          reg = &lt;0x00000000 0x20000000&gt;;
+                          reg-names = &quot;sram0&quot;;
+          };
+
+          soc {
+                          compatible = &quot;simple-bus&quot;;
+                          ranges = &lt;0x0 0xF0000000 0x10000000&gt;;
+                          interrupt-parent = &lt;&amp;plic0&gt;;
+
+                          plic0: interrupt-controller@0 {
+                              compatible = &quot;sifive,plic-1.0.0&quot;;
+                              reg = &lt;0x0000000 0x4000000&gt;;
+                              interrupt-controller;
+                              interrupts-extended = &lt;&amp;cpu0_intc 9&gt;;
+                              riscv,ndev = &lt;31&gt;;
+                          };
+
+                          serial@4000000 {
+                              compatible = &quot;ns16550&quot;;
+                              reg = &lt;0x4000000 0x100000&gt;;
+                              interrupts = &lt;1&gt;;
+                              no-loopback-test;
+                              clock-frequency = &lt;5000000&gt;; /* the baudrate divisor is ignored */
+                          };
+
+                          net0: virtio@4100000 {
+                              compatible = &quot;virtio,mmio&quot;;
+                              reg = &lt;0x4100000 0x100000&gt;;
+                              interrupts = &lt;2&gt;;
+                          };
+          };
+        };</code></pre>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+RAM
+</h4>
+<img src="images/memory-layout.jpg" width="100%" />
+<h4>
+A pointer to the DTB block in RAM is placed in the CPU register A1
+before the machine starts
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+RAM
+</h4>
+<img src="images/memory-layout.jpg" width="100%" />
+<h4>
+What’s initrd?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+What’s initrd?
+</h4>
+<img src="images/initrd.jpg" width="50%"/>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4 style="color: #aaaaaa;">
+What’s initrd?
+</h4>
+<h4>
+Root filesystem in memory to bootstrap the system
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4 style="color: #aaaaaa;">
+What’s initrd?
+</h4>
+<h4 style="color: #aaaaaa;">
+Root filesystem in memory to bootstrap the system
+</h4>
+<h4>
+Typically is used to help with drivers needed during the boot, but we’re
+going to use it as <b style="color: #ee5555">the</b> filesystem
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4 style="color: #555555;">
+CPU <a href="https://github.com/sysprog21/semu">(semu)</a>
+</h4>
+<h4 style="color: #555555;">
+RAM
+</h4>
+<h4>
+I/O
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+I/O
+</h4>
+<h4>
+MMU, PLIC, UART, virtio-net
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+I/O
+</h4>
+<h4>
+MMU, PLIC, UART, virtio-net
+</h4>
+&lt;img src=“images/io-complete1.svg” width=“80%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Emulator 101
+</h3>
+<h4>
+I/O
+</h4>
+<h4>
+MMU, PLIC, UART, virtio-net
+</h4>
+&lt;img src=“images/io-complete2.svg” width=“80%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<!-- .slide: data-background-video="images/linux-on-gpu.mp4" -->
+<h3 style="margin-top: -35%;color: #fca503cc;">
+Linux kernel loads!
+</h3>
+<h4 style="margin-top: 0%;color: #fca503cc;">
+64 VMs
+</h4>
+<h4 style="margin-top: 0%;color: #fca503cc;">
+(8x play speed)
+</h4>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Now what?
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Now what?
+</h3>
+<h4>
+It’s dull without I/O
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Now what?
+</h3>
+<h4 style="color: #aaaaaa;">
+It’s dull without I/O
+</h4>
+<h4>
+So let’s make use of network
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Now what?
+</h3>
+&lt;img src=“images/demo-arch.svg” width=“80%”, background-color=“white”
+/&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Now what?
+</h3>
+&lt;img src=“images/demo-arch-focus.svg” width=“90%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“90%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“50%”,
+background-color=“white” /&gt;
+<h4>
+How do we actually “<b style="color: #ee5555;">put the packet into the
+appropriate VM’s virtio-net RX buffer</b>”?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“50%”,
+background-color=“white” /&gt;
+<h4 style="color: #aaaaaa;">
+How do we actually “<b style="color: #ee5555;">put the packet into the
+appropriate VM’s virtio-net RX buffer</b>”?
+</h4>
+<h4>
+CUDA Managed Memory to the rescue
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“50%”,
+background-color=“white” /&gt;
+<h4 style="color: #aaaaaa;">
+How do we actually “<b style="color: #ee5555;">put the packet into the
+appropriate VM’s virtio-net RX buffer</b>”?
+</h4>
+<h4 style="color: #aaaaaa;">
+CUDA Managed Memory to the rescue
+</h4>
+<h4>
+Great for lots of small writes
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+A small remark
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“40%”,
+background-color=“white” /&gt;
+<h4 style="color: #ee5555;">
+CUDA Managed Memory to the rescue
+</h4>
+<h4>
+Great for lots of small writes
+</h4>
+<h4 style="color: #ee5555;">
+TCC mode
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+A small remark
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“40%”,
+background-color=“white” /&gt;
+<h4 style="color: #ee5555;">
+CUDA Managed Memory to the rescue
+</h4>
+<h4>
+Great for lots of small writes
+</h4>
+<h4 style="color: #ee5555;">
+TCC mode
+</h4>
+<h4>
+Allows to run emulation completely independently at its own pace
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-in.svg” width=“90%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+VM → Host
+</h4>
+&lt;img src=“images/packet-rewrite-out.svg” width=“90%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-problem.svg” width=“120%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+&lt;img src=“images/packet-rewrite-problem-solution.svg” width=“90%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+<pre class="bash"><code data-trim data-noescape>
+dduka@dduka-mlt: iptables -A INPUT -p tcp --dport 4000 
+--tcp-flags RST RST -j DROP
+  </code></pre>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Packet rewrite
+</h3>
+<h4>
+Host → VM
+</h4>
+<h4>
+WinDivert
+</h4>
+https://github.com/basil00/WinDivert
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+&lt;img src=“images/demo-arch-focus.svg” width=“90%”,
+background-color=“white” /&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4>
+VM network stack drops inbound packets
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+VM network stack drops inbound packets
+</h4>
+<h4>
+Breakpoint in the emulator I/O code
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+VM network stack drops inbound packets
+</h4>
+<h4 style="color: #aaaaaa;">
+Breakpoint in the emulator I/O code
+</h4>
+<h4>
+Linux kernel picks up the packet from RX buffer
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+VM network stack drops inbound packets
+</h4>
+<h4 style="color: #aaaaaa;">
+Breakpoint in the emulator I/O code
+</h4>
+<h4 style="color: #aaaaaa;">
+Linux kernel picks up the packet from virtio-net RX buffer
+</h4>
+<h4>
+Good
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+VM network stack drops inbound packets
+</h4>
+<h4 style="color: #aaaaaa;">
+Breakpoint in the emulator I/O code
+</h4>
+<h4 style="color: #aaaaaa;">
+Linux kernel picks up the packet from virtio-net RX buffer
+</h4>
+<h4 style="color: #aaaaaa;">
+Good
+</h4>
+<h4>
+Something is up at L2 (OSI) or higher
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+VM network stack drops inbound packets
+</h4>
+<h4 style="color: #aaaaaa;">
+Breakpoint in the emulator I/O code
+</h4>
+<h4 style="color: #aaaaaa;">
+Linux kernel picks up the packet from virtio-net RX buffer
+</h4>
+<h4 style="color: #aaaaaa;">
+Good
+</h4>
+<h4 style="color: #aaaaaa;">
+Something is up at L2 (OSI) or higher
+</h4>
+<h4>
+Need more tooling
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Buildroot
+</h3>
+<h4>
+https://buildroot.org/
+</h4>
+<h4>
+A helpful tool to build a kernel and
+</h4>
+<h4>
+a root filesystem
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4>
+Using buildroot recompile initrd to include ethtool
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Using buildroot recompile initrd to include ethtool
+</h4>
+<h4>
+Handy to observe the amount of RX/TX packets visible to user space
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Using buildroot recompile initrd to include ethtool
+</h4>
+<h4 style="color: #aaaaaa;">
+Handy to observe the amount of RX/TX packets visible to user space
+</h4>
+<h4>
+Packets are visible, but they are still dropped
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4>
+Using buildroot recompile initrd to include tcpdump
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Using buildroot recompile initrd to include tcpdump
+</h4>
+<h4>
+Start tcpdump as part of /init script, because there is no keyboard
+input :/
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Using buildroot recompile initrd to include tcpdump
+</h4>
+<h4 style="color: #aaaaaa">
+Start tcpdump as part of /init script, because there is no keyboard
+input :/
+</h4>
+<h4>
+MAC address mismatch!
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Using buildroot recompile initrd to include tcpdump
+</h4>
+<h4 style="color: #aaaaaa">
+Start tcpdump as part of /init script, because there is no keyboard
+input :/
+</h4>
+<h4 style="color: #aaaaaa">
+MAC address mismatch!
+</h4>
+<h4>
+Fixed packet rewrite and manually added ARP entry to match VM MAC to VM
+IP
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<pre class="bash"><code data-trim data-noescape>
+  printf "Starting network: \n"
+  ifconfig eth0 192.168.0.113 netmask 255.255.255.0 
+  hw ether 34:6f:24:4a:95:53 up
+  printf "ifconfig info: \n"
+  printf "$(ifconfig)"
+  printf "\n---------------------------\n"
+  printf "Updating ARP entry for 192.168.0.112\n"
+  <b style="color: #ee1111;">arp -s 192.168.0.112 33:6f:24:4a:95:53</b>
+  </code></pre>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4>
+Packets still do not reach nginx :/
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4>
+tcpdump: packets are dropped by the network stack because checksums are
+wrong (byte order)
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4 style="color: #aaaaaa;">
+tcpdump: packets are dropped by the network stack because checksums are
+wrong (byte order)
+</h4>
+<h4>
+Fixing packet rewrite (again)
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4 style="color: #aaaaaa;">
+tcpdump: packets are dropped by the network stack because checksums are
+wrong (byte order)
+</h4>
+<h4>
+Fixing packet rewrite (again)
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4>
+Packets still do not reach nginx :/
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4>
+Recompile the kernel (again) with iptables support
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4 style="color: #aaaaaa;">
+Recompile the kernel (again) with iptables support
+</h4>
+<pre class="bash"><code data-trim data-noescape>
+  iptables -t raw -A PREROUTING -p tcp -j TRACE
+  iptables -t raw -A OUTPUT -p tcp -j TRACE
+  </code></pre>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4 style="color: #aaaaaa;">
+Recompile the kernel (again) with iptables support
+</h4>
+<pre class="bash"><code data-trim data-noescape>
+  iptables -t raw -A PREROUTING -p tcp -j TRACE
+  iptables -t raw -A OUTPUT -p tcp -j TRACE
+  </code></pre>
+<h4>
+The routing table is empty
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<h4 style="color: #aaaaaa;">
+Packets still do not reach nginx :/
+</h4>
+<h4 style="color: #aaaaaa;">
+Recompile the kernel (again) with iptables support
+</h4>
+<pre class="bash"><code data-trim data-noescape>
+  iptables -t raw -A PREROUTING -p tcp -j TRACE
+  iptables -t raw -A OUTPUT -p tcp -j TRACE
+  </code></pre>
+<h4>
+The routing table is empty
+</h4>
+&lt;img src=“images/facepalm.jpg” width=“40%”, background-color=“white”
+/&gt;
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Debugging
+</h3>
+<pre class="bash"><code data-trim data-noescape>
+  printf "Starting network: \n"
+  ifconfig eth0 192.168.0.113 netmask 255.255.255.0 
+  hw ether 34:6f:24:4a:95:53 up
+  printf "ifconfig info: \n"
+  printf "$(ifconfig)"
+  printf "\n---------------------------\n"
+  printf "Updating ARP entry for 192.168.0.112\n"
+  arp -s 192.168.0.112 33:6f:24:4a:95:53
+  printf "Adding default route\n"
+  <b style="color: #ee1111;">route add default gw 192.168.0.1 dev eth0</b></code></pre>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Last touches
+</h3>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Last touches
+</h3>
+<h4>
+Create a browser webpage for the host
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Last touches
+</h3>
+<h4 style="color: #aaaaaa;">
+Create a browser webpage for the host
+</h4>
+<h4>
+A single page accessing all VMs at the same time
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Last touches
+</h3>
+<h4 style="color: #aaaaaa;">
+Create a browser webpage for the host
+</h4>
+<h4 style="color: #aaaaaa;">
+A single page accessing all VMs at the same time
+</h4>
+<h4>
+I don’t know JS, but ChatGPT does
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Last touches
+</h3>
+<h4 style="color: #aaaaaa;">
+Create a browser webpage for the host
+</h4>
+<h4 style="color: #aaaaaa;">
+A single page accessing all VMs at the same time
+</h4>
+<h4 style="color: #aaaaaa;">
+I don’t know JS, but ChatGPT does
+</h4>
+<h4>
+VM startup: cron job to update index.html with uptime
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Last touches
+</h3>
+<h4 style="color: #aaaaaa;">
+Create a browser webpage for the host
+</h4>
+<h4 style="color: #aaaaaa;">
+A single page accessing all VMs at the same time
+</h4>
+<h4 style="color: #aaaaaa;">
+I don’t know JS, but ChatGPT does
+</h4>
+<h4 style="color: #aaaaaa;">
+VM startup: cron job to update index.html with uptime
+</h4>
+<h4>
+VM startup: tune nginx config to return that index.html
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<!-- .slide: data-background-video="images/final-8x.mp4" data-background-size="cover"-->
+<h3 style="margin-top: -35%;color: #fca503cc;">
+The final demo
+</h3>
+<h4 style="margin-top: 0%;color: #fca503cc;">
+256 VMs
+</h4>
+<h4 style="margin-top: 0%;color: #fca503cc;">
+(8x play speed)
+</h4>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Stats
+</h3>
+<h4 style="font-size: 0.8em;">
+Each VM is a single RISC-V core with 22Mb of RAM, 9Mb is kernel and
+initrd, rest is heap
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Stats
+</h3>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+Each VM is a single RISC-V core with 22Mb of RAM, 9Mb is kernel and
+initrd, rest is heap
+</h4>
+<h4 style="font-size: 0.8em;">
+RTX3070 (8Gb) can fit ~350 VMs
+</h4>
+<h4 style="font-size: 0.8em;">
+RTX4090 (24Gb) can fit ~1100 VMs
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Stats
+</h3>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+Each VM is a single RISC-V core with 22Mb of RAM, 9Mb is kernel and
+initrd, rest is heap
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+RTX3070 (8Gb) can fit ~350 VMs
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+RTX4090 (24Gb) can fit ~1100 VMs
+</h4>
+<h4 style="font-size: 0.8em;">
+VM boot time is ~1.5 minutes assuming there is no contention on GPU SM
+</h4>
+<h4 style="font-size: 0.8em;">
+Can be ~5 minutes under high contention
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Stats
+</h3>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+Each VM is a single RISC-V core with 22Mb of RAM, 9Mb is kernel and
+initrd, rest is heap
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+RTX3070 (8Gb) can fit ~350 VMs
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+RTX4090 (24Gb) can fit ~1100 VMs
+</h4>
+<h4 style="font-size: 0.8em;">
+VM boot time is ~1.5 minutes assuming there is no contention on GPU SM
+</h4>
+<h4 style="font-size: 0.8em;">
+Can be ~5 minutes under high contention
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Stats
+</h3>
+<h4 style="font-size: 0.8em;">
+Each VM is a single RISC-V core with 22Mb of RAM,
+<b style="color: #ee5555;">9Mb is kernel and initrd</b>, rest is heap
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+RTX3070 (8Gb) can fit ~350 VMs
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+RTX4090 (24Gb) can fit ~1100 VMs
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+VM boot time is ~1.5 minutes assuming there is no contention on GPU SM
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+Can be ~5 minutes under high contention
+</h4>
+<img src="images/memory-layout.jpg" width="70%" />
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Stats
+</h3>
+<h4 style="font-size: 0.8em;">
+Each VM is a single RISC-V core with 22Mb of RAM,
+<b style="color: #ee5555;">9Mb is kernel and initrd</b>, rest is heap
+</h4>
+<h4 style="font-size: 0.8em;">
+RTX3070 (8Gb) can fit <s>~350</s> 600 VMs
+</h4>
+<h4 style="font-size: 0.8em;">
+RTX4090 (24Gb) can fit <s>~1100</s> 1800 VMs
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+VM boot time is ~1.5 minutes assuming there is no contention on GPU SM
+</h4>
+<h4 style="color: #aaaaaa;font-size: 0.8em;">
+Can be ~5 minutes under high contention
+</h4>
+<img src="images/memory-layout.jpg" width="70%" />
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Efficiency
+</h3>
+<h4>
+Is GPU more efficient?
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Efficiency
+</h3>
+<h4 style="color: #aaaaaa;">
+Is GPU more efficient?
+</h4>
+<h4>
+TLDR: yes, if you need to emulate <em>lots</em> of VMs
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Efficiency
+</h3>
+<h4 style="color: #aaaaaa;">
+Is GPU more efficient?
+</h4>
+<h4 style="color: #aaaaaa;">
+TLDR: yes, if you need to emulate <em>lots</em> of VMs
+</h4>
+<h4>
+Gameboy case, for 16 ms of emulated time:
+</h4>
+<h4 style="font-size: 0.8em">
+CPU: 0.8 ms
+</h4>
+<h4 style="font-size: 0.8em">
+GPU: 22 ms
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<section data-auto-animate>
+<h3 style="color: #d1d0a3;">
+Efficiency
+</h3>
+<h4 style="color: #aaaaaa;">
+Is GPU more efficient?
+</h4>
+<h4 style="color: #aaaaaa;">
+TLDR: yes, if you need to emulate <em>lots</em> of VMs
+</h4>
+<h4>
+Gameboy case, for 16 ms of emulated time:
+</h4>
+<h4 style="font-size: 0.8em">
+CPU: 0.8 ms
+</h4>
+<h4 style="font-size: 0.5em">
+tens of cores
+</h4>
+<h4 style="font-size: 0.8em">
+GPU: 22 ms
+</h4>
+<h4 style="font-size: 0.5em">
+thousands of “cores”
+</h4>
+</section>
+</section>
+<section class="slide level2">
+
+<h3 style="color: #d1d0a3;">
+Questions?
+</h3>
+</section>
+    </div>
+  </div>
+
+  <script src=".//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src=".//plugin/notes/notes.js"></script>
+  <script src=".//plugin/search/search.js"></script>
+  <script src=".//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
 </html>
