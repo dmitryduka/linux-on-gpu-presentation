@@ -128,8 +128,8 @@ Past experiments
 <h4>
 Gameboy on GPU
 </h4>
-&lt;img src=“images/GreyGameboy.png” width=“60%”,
-background-color=“white” /&gt;
+<;img src=“images/GreyGameboy.png” width=“60%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -256,8 +256,8 @@ Emulator 101
 <h4>
 CPU on CPU
 </h4>
-&lt;img src=“images/cpu-emulation-loop.svg” width=“60%”,
-background-color=“white” /&gt;
+<;img src=“images/cpu-emulation-loop.svg” width=“60%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -269,8 +269,8 @@ Emulator 101
 <h4>
 CPU on GPU
 </h4>
-&lt;img src=“images/gpu-emulation-loop.svg” width=“60%”,
-background-color=“white” /&gt;
+<;img src=“images/gpu-emulation-loop.svg” width=“60%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -282,8 +282,8 @@ Emulator 101
 <h4>
 CPU on GPU
 </h4>
-&lt;img src=“images/gpu-emulation-loop.svg” width=“40%”,
-background-color=“white” /&gt;
+<;img src=“images/gpu-emulation-loop.svg” width=“40%”,
+background-color=“white” />
 <h4>
 Why do we emulate only a batch of instructions?
 </h4>
@@ -318,8 +318,8 @@ Emulator 101
 <h4>
 CPU on GPU
 </h4>
-&lt;img src=“images/cuda-warps.svg” width=“100%”,
-background-color=“white” /&gt;
+<;img src=“images/cuda-warps.svg” width=“100%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -334,8 +334,8 @@ CPU on GPU
 <h4 style="font-size: 0.5em;">
 Emulating 320 instances
 </h4>
-&lt;img src=“images/hw-sched-good.svg” width=“100%”,
-background-color=“white” /&gt;
+<;img src=“images/hw-sched-good.svg” width=“100%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -350,8 +350,8 @@ CPU on GPU
 <h4 style="font-size: 0.5em;">
 Emulating 320 instances
 </h4>
-&lt;img src=“images/hw-sched-bad.svg” width=“100%”,
-background-color=“white” /&gt;
+<;img src=“images/hw-sched-bad.svg” width=“100%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -376,17 +376,18 @@ Emulating 320 instances
 10 warps, 32 threads each
 </th>
 </tr>
-<pre><code>&lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-      &lt;td&gt;&lt;img src=&quot;images/hw-sched-good.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;img src=&quot;images/hw-sched-bad.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-      &lt;td style=&quot;text-align:center;font-size: 2em;color: #000000;&quot;&gt;?&lt;/td&gt;
-      &lt;td style=&quot;text-align:center;font-size: 2em;color: #000000;&quot;&quot;&gt;?&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;</code></pre>
+</thead>
+<pre><code>
+<tbody>
+  <tr>
+      <td><img src=&quot;images/hw-sched-good.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /></td>
+      <td><img src=&quot;images/hw-sched-bad.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /></td>
+  </tr>
+  <tr>
+      <td style=&quot;text-align:center;font-size: 2em;color: #000000;&quot;>?</td>
+      <td style=&quot;text-align:center;font-size: 2em;color: #000000;&quot;&quot;>?</td>
+  </tr>
+</tbody></code></pre>
 </table>
 </section>
 </section>
@@ -412,17 +413,17 @@ Emulating 320 instances
 10 warps, 32 threads each
 </th>
 </tr>
-<pre><code>&lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-      &lt;td&gt;&lt;img src=&quot;images/hw-sched-good.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;img src=&quot;images/hw-sched-bad.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-      &lt;td style=&quot;text-align:center;font-size: 2em;&quot;&gt;✓&lt;/td&gt;
-      &lt;td style=&quot;text-align:center;font-size: 2em;&quot;&gt;✘&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;</code></pre>
+<pre><code></thead>
+<tbody>
+  <tr>
+      <td><img src=&quot;images/hw-sched-good.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /></td>
+      <td><img src=&quot;images/hw-sched-bad.svg&quot; width=&quot;100%&quot;, background-color=&quot;white&quot; /></td>
+  </tr>
+  <tr>
+      <td style=&quot;text-align:center;font-size: 2em;&quot;>✓</td>
+      <td style=&quot;text-align:center;font-size: 2em;&quot;>✘</td>
+  </tr>
+</tbody></code></pre>
 </table>
 </section>
 </section>
@@ -682,8 +683,8 @@ I/O
 <h4>
 MMU, PLIC, UART, virtio-net
 </h4>
-&lt;img src=“images/io-complete1.svg” width=“80%”,
-background-color=“white” /&gt;
+<img src=“images/io-complete1.svg” width=“80%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -698,8 +699,8 @@ I/O
 <h4>
 MMU, PLIC, UART, virtio-net
 </h4>
-&lt;img src=“images/io-complete2.svg” width=“80%”,
-background-color=“white” /&gt;
+<img src=“images/io-complete2.svg” width=“80%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -754,8 +755,8 @@ So let’s make use of network
 <h3 style="color: #d1d0a3;">
 Now what?
 </h3>
-&lt;img src=“images/demo-arch.svg” width=“80%”, background-color=“white”
-/&gt;
+<img src=“images/demo-arch.svg” width=“80%”, background-color=“white”
+/>
 </section>
 </section>
 <section class="slide level2">
@@ -764,8 +765,8 @@ Now what?
 <h3 style="color: #d1d0a3;">
 Now what?
 </h3>
-&lt;img src=“images/demo-arch-focus.svg” width=“90%”,
-background-color=“white” /&gt;
+<img src=“images/demo-arch-focus.svg” width=“90%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -777,8 +778,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“90%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“90%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -790,8 +791,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“50%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“50%”,
+background-color=“white” />
 <h4>
 How do we actually “<b style="color: #ee5555;">put the packet into the
 appropriate VM’s virtio-net RX buffer</b>”?
@@ -807,8 +808,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“50%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“50%”,
+background-color=“white” />
 <h4 style="color: #aaaaaa;">
 How do we actually “<b style="color: #ee5555;">put the packet into the
 appropriate VM’s virtio-net RX buffer</b>”?
@@ -827,8 +828,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“50%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“50%”,
+background-color=“white” />
 <h4 style="color: #aaaaaa;">
 How do we actually “<b style="color: #ee5555;">put the packet into the
 appropriate VM’s virtio-net RX buffer</b>”?
@@ -850,8 +851,8 @@ Packet rewrite
 <h4>
 A small remark
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“40%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“40%”,
+background-color=“white” />
 <h4 style="color: #ee5555;">
 CUDA Managed Memory to the rescue
 </h4>
@@ -872,8 +873,8 @@ Packet rewrite
 <h4>
 A small remark
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“40%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“40%”,
+background-color=“white” />
 <h4 style="color: #ee5555;">
 CUDA Managed Memory to the rescue
 </h4>
@@ -897,8 +898,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-in.svg” width=“90%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-in.svg” width=“90%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -910,8 +911,8 @@ Packet rewrite
 <h4>
 VM → Host
 </h4>
-&lt;img src=“images/packet-rewrite-out.svg” width=“90%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-out.svg” width=“90%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -923,8 +924,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-problem.svg” width=“120%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-problem.svg” width=“120%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -936,8 +937,8 @@ Packet rewrite
 <h4>
 Host → VM
 </h4>
-&lt;img src=“images/packet-rewrite-problem-solution.svg” width=“90%”,
-background-color=“white” /&gt;
+<img src=“images/packet-rewrite-problem-solution.svg” width=“90%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -976,8 +977,8 @@ https://github.com/basil00/WinDivert
 <h3 style="color: #d1d0a3;">
 Debugging
 </h3>
-&lt;img src=“images/demo-arch-focus.svg” width=“90%”,
-background-color=“white” /&gt;
+<img src=“images/demo-arch-focus.svg” width=“90%”,
+background-color=“white” />
 </section>
 </section>
 <section class="slide level2">
@@ -1379,8 +1380,8 @@ Recompile the kernel (again) with iptables support
 <h4>
 The routing table is empty
 </h4>
-&lt;img src=“images/facepalm.jpg” width=“40%”, background-color=“white”
-/&gt;
+<img src=“images/facepalm.jpg” width=“40%”, background-color=“white”
+/>
 </section>
 </section>
 <section class="slide level2">
